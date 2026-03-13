@@ -1,0 +1,4 @@
+elasticsearch==8.13.0
+Faker==40.8.0
+PyYAML==6.0.3
+requests==2.32.5

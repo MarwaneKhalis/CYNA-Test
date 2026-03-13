@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.0
+    container_name: cyna-elasticsearch
+    environment:
+      - discovery.type=single-node
+      
+      - xpack.security.enabled=false 
+      # 🎯 LA BOTTE SECRÈTE (Contrainte des 8 Go) : On limite la RAM de Java à 2 Go
+      - ES_JAVA_OPTS=-Xms2g -Xmx2g
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    # Sécurité supplémentaire : Docker lui-même empêchera ES de dépasser 3 Go au total
+    mem_limit: 3g 
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.13.0
+    container_name: cyna-kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    # Kibana est plus léger, on le limite à 1 Go
+    mem_limit: 1g
+
+volumes:
+  es_data:
+    driver: local
