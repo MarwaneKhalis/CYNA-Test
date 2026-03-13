@@ -5,13 +5,13 @@ This project simulates a real-time monitoring tool for network security logs (ID
 
 ## How the system works:
 
--Generation: Continuous, high-speed creation of IDS logs.
+- Generation: Continuous, high-speed creation of IDS logs.
 
--Enrichment: On-the-fly cross-referencing of IP addresses with the Ipsum list to identify malicious traffic.
+- Enrichment: On-the-fly cross-referencing of IP addresses with the Ipsum list to identify malicious traffic.
 
--Storage: Sending and indexing the enriched logs in ElasticSearch.
+- Storage: Sending and indexing the enriched logs in ElasticSearch.
 
--Monitoring: Real-time tracking and analysis using a Kibana dashboard.
+- Monitoring: Real-time tracking and analysis using a Kibana dashboard.
 
 ## Setup
 
